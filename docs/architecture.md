@@ -15,5 +15,5 @@ layer.
 
 ## Runtime Separation
 
-- CPU path: API, deterministic parsing, authority lookups, review workflow
-- MLX/GPU path: PDF OCR fallback, dense retrieval, candidate reranking, ambiguous citation classification
+- Foreground path: API, deterministic parsing, authority lookups, review workflow
+- Local background path: PDF OCR fallback, candidate reranking, and ambiguous citation classification when the local process chooses to queue extra work

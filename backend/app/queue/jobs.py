@@ -12,14 +12,14 @@ class QueuedJob:
     preferred_runtime: str = "cpu"
 
 
-class MlxJobPlanner:
+class LocalJobPlanner:
     def plan_pdf_fallback_jobs(self, asset: SourceAsset) -> list[dict]:
         return [
             asdict(
                 QueuedJob(
-                job_type="pdf_layout_fallback",
-                payload={"filename": asset.filename, "format": asset.format.value},
-                preferred_runtime="mlx-gpu",
+                    job_type="pdf_layout_fallback",
+                    payload={"filename": asset.filename, "format": asset.format.value},
+                    preferred_runtime="local-background",
                 )
             )
         ]
@@ -29,6 +29,6 @@ class MlxJobPlanner:
             QueuedJob(
                 job_type="citation_rerank",
                 payload={"mention_id": mention_id, "reference_title": reference_title},
-                preferred_runtime="mlx-gpu",
+                preferred_runtime="local-background",
             )
         )

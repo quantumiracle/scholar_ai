@@ -79,7 +79,7 @@ export default function HomePage() {
           <ul className="list">
             <li>Deterministic parsers handle `LaTeX`, `.bib`, `Docx`, and baseline `PDF` text extraction.</li>
             <li>Rules-first contribution labels keep the reviewer workflow transparent and auditable.</li>
-            <li>MLX worker hooks are reserved for OCR fallback, reranking, and ambiguous cases.</li>
+            <li>Local background jobs handle OCR fallback, reranking, and ambiguous cases when extra processing is needed.</li>
           </ul>
         </div>
       </section>

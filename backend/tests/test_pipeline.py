@@ -84,7 +84,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(result.contribution, ContributionType.MODEL_ARCHITECTURE)
         self.assertGreater(result.confidence, 0.5)
 
-    def test_unresolved_reference_queues_gpu_rerank(self) -> None:
+    def test_unresolved_reference_queues_local_rerank(self) -> None:
         request = IngestRequest(
             manuscript_id="paper-2",
             assets=[
@@ -110,6 +110,7 @@ class PipelineTests(unittest.TestCase):
         service = IngestionService(resolver=FakeResolver())
         response = service.ingest(request)
         self.assertEqual(response.queued_jobs[0]["job_type"], "citation_rerank")
+        self.assertEqual(response.queued_jobs[0]["preferred_runtime"], "local-background")
 
 
 if __name__ == "__main__":

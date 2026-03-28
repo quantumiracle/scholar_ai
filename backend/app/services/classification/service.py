@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from app.schemas.citation import CitationDecision, CitationMention, ReferenceEntry
+from app.queue.jobs import LocalJobPlanner
 from app.services.classification.rules import decision_from_classification
-from app.queue.jobs import MlxJobPlanner
 
 
 @dataclass(slots=True)
@@ -16,7 +16,7 @@ class ClassifiedDecision:
 class ContributionClassifier:
     def __init__(self, low_confidence_threshold: float = 0.7) -> None:
         self.low_confidence_threshold = low_confidence_threshold
-        self.job_planner = MlxJobPlanner()
+        self.job_planner = LocalJobPlanner()
 
     def classify(
         self,
